@@ -55,7 +55,7 @@ showWildCookieRandomly();
 // Scores and settings
 let score = 0;
 let progressClicks = 0;
-const maxClicks = 5;
+const maxClicks = 50;
 let progressInterval;
 let cookieRotation = 0;
 let cookiesPerClick = 1;
