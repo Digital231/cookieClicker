@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="btn btn-primary mt-3 upgrade1 p-3">Enhance mouse. Buy +5 on each click. Price 50 cookies.
+                </div>
+                <div class="btn btn-primary mt-3 upgrade2 p-3">Hire a grandma. 5 cookies per second. Price 500 cookies
+                </div>
+                <div class="btn btn-primary mt-3 upgrade3 p-3">Buy local cookies shop. 15 cookies per second. Price 1000
+                </div>
+                <div class="btn btn-primary mt-3 upgrade4 p-3">Buy factory. 50 cookies per second. Price 5000</div>
+                <div class="btn btn-primary mt-3 upgrade5 p-3">Buy mine. 100 cookies per second. Price 10000</div>
+                <div class="btn btn-primary mt-3 upgrade6 p-3">Buy farm. 250 cookies per second. Price 25000</div>
+            </div>
+            <div class="col d-flex justify-content-center align-items-center flex-column">
+                <div class="points mt-5 mb-5">Cookies: 0</div>
+                <div class="cookie"></div>
+                <div class="progress-container mt-3" style="width: 400px; height: 30px; background-color: #eee;">
+                    <div class="progress-bar" style="width: 0%; height: 100%; background-color: #e8280e;"></div>
+                </div>
+
+                <div class="wild-cookie"></div>
+            </div>
+            <div class="col">
+                <h2 class="upgrades mb-5">Upgrades</h2>
+                <div class="d-flex justify-content-center flex-column">
+                    <h4 class="shopItem1">+5 cookies</h4>
+                    <h4 class="shopItem2">5 cookies per second</h4>
+                    <h4 class="shopItem3">15 cookies per second</h4>
+                    <h4 class="shopItem4">50 cookies per second</h4>
+                    <h4 class="shopItem5">100 cookies per second</h4>
+                    <h4 class="shopItem6">250 cookies per second</h4>
+                </div>
+            </div>
+
+        </div>
+        <script src="script.js"></script>
+</body>
+
+</html>
