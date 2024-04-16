@@ -110,11 +110,11 @@ let progressInterval;
 let cookieRotation = 0;
 let cookiesPerClick = 1;
 const priceOfCursor = 50;
-const priceOfGrandma = 500;
-const priceOfLocalCookiesShop = 1000;
-const priceOfFactory = 5000;
-const priceOfMine = 10000;
-const priceOfFarm = 25000;
+const priceOfGrandma = 250;
+const priceOfLocalCookiesShop = 500;
+const priceOfFactory = 2000;
+const priceOfMine = 3000;
+const priceOfFarm = 4000;
 let cookiesPerSecond = 0;
 const gameDuration = 60; // 60 seconds for the game
 const timerDisplay = document.querySelector(".timer");
@@ -367,7 +367,7 @@ upgradeButton.addEventListener("click", () => {
 hireGrandmaButton.addEventListener("click", () => {
   if (score >= priceOfGrandma) {
     score -= priceOfGrandma;
-    cookiesPerSecond += 5; // Increase cookies per second
+    cookiesPerSecond += 10; // Increase cookies per second
     hireGrandmaButton.style.display = "none";
     shopItem2.style.display = "block";
     updateDisplay();
@@ -378,7 +378,7 @@ hireGrandmaButton.addEventListener("click", () => {
 buyLocalCookiesShopButton.addEventListener("click", () => {
   if (score >= priceOfLocalCookiesShop) {
     score -= priceOfLocalCookiesShop;
-    cookiesPerSecond += 15; // Increase cookies per second
+    cookiesPerSecond += 30; // Increase cookies per second
     buyLocalCookiesShopButton.style.display = "none";
     shopItem3.style.display = "block";
     updateDisplay();
@@ -389,7 +389,7 @@ buyLocalCookiesShopButton.addEventListener("click", () => {
 buyFactoryButton.addEventListener("click", () => {
   if (score >= priceOfFactory) {
     score -= priceOfFactory;
-    cookiesPerSecond += 50; // Increase cookies per second
+    cookiesPerSecond += 100; // Increase cookies per second
     buyFactoryButton.style.display = "none";
     shopItem4.style.display = "block";
     updateDisplay();
@@ -400,7 +400,7 @@ buyFactoryButton.addEventListener("click", () => {
 buyMineButton.addEventListener("click", () => {
   if (score >= priceOfMine) {
     score -= priceOfMine;
-    cookiesPerSecond += 100; // Increase cookies per second
+    cookiesPerSecond += 200; // Increase cookies per second
     buyMineButton.style.display = "none";
     shopItem5.style.display = "block";
     updateDisplay();
@@ -411,7 +411,7 @@ buyMineButton.addEventListener("click", () => {
 buyFarmButton.addEventListener("click", () => {
   if (score >= priceOfFarm) {
     score -= priceOfFarm;
-    cookiesPerSecond += 250; // Increase cookies per second
+    cookiesPerSecond += 500; // Increase cookies per second
     buyFarmButton.style.display = "none";
     shopItem6.style.display = "block";
     updateDisplay();
