@@ -20,7 +20,10 @@
 </head>
 
 <body>
+
     <div class="container">
+
+
         <div class="row">
             <div class="col">
                 <div class="btn btn-primary mt-3 upgrade1 p-3">Enhance mouse. Buy +5 on each click. Price 50 cookies.
@@ -41,6 +44,7 @@
                 </div>
 
                 <div class="wild-cookie"></div>
+                <div class="halfCookie"></div>
             </div>
             <div class="col">
                 <h2 class="upgrades mb-5">Upgrades</h2>
@@ -51,6 +55,21 @@
                     <h4 class="shopItem4">50 cookies per second</h4>
                     <h4 class="shopItem5">100 cookies per second</h4>
                     <h4 class="shopItem6">250 cookies per second</h4>
+                </div>
+            </div>
+            <div class="col">
+                <div class="d-flex justify-content-center conditions flex-column">
+                    <h1>Win conditions</h1>
+                    <h6 class="mt-5">Reach 10000 cookies before timer runs out!</h6>
+                    <h6>Filling up bar gives x2 points (max1000)</h6>
+                    <h6>Cookie gives 100 points and +3sec on timer!</h6>
+                    <h6>Half bitten cookie -100 points and -3s on timer1</h6>
+                    <div class="timer"></div>
+                    <audio id="backgroundMusic" loop>
+                        <source src="./assets/bg-music.mp3" type="audio/mp3">
+                        Your browser does not support the audio element.
+                      </audio>
+                      
                 </div>
             </div>
 

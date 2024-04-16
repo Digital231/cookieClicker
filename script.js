@@ -15,24 +15,30 @@ const shopItem5 = document.querySelector(".shopItem5");
 const shopItem6 = document.querySelector(".shopItem6");
 const progressBar = document.querySelector(".progress-bar");
 const wildCookie = document.querySelector(".wild-cookie");
+const halfCookie = document.querySelector(".halfCookie");
 
 function showWildCookieRandomly() {
   function showAndHide() {
+    const margin = 50;
     // Use the viewport dimensions, considering the wild cookie's size to avoid overflow
     const vw =
       Math.max(
         document.documentElement.clientWidth || 0,
         window.innerWidth || 0
-      ) - wildCookie.offsetWidth;
+      ) -
+      wildCookie.offsetWidth -
+      margin * 2; // Subtracting margin from both sides
     const vh =
       Math.max(
         document.documentElement.clientHeight || 0,
         window.innerHeight || 0
-      ) - wildCookie.offsetHeight;
+      ) -
+      wildCookie.offsetHeight -
+      margin * 2; // Subtracting margin from both sides
 
-    // Generate random positions within the viewport
-    const randomX = Math.floor(Math.random() * vw);
-    const randomY = Math.floor(Math.random() * vh);
+    // Generate random positions within the viewport with the margin
+    const randomX = Math.floor(Math.random() * vw) + margin;
+    const randomY = Math.floor(Math.random() * vh) + margin;
 
     // Position the wild cookie using CSS 'top' and 'left' properties based on viewport dimensions
     wildCookie.style.left = `${randomX}px`;
@@ -44,14 +50,58 @@ function showWildCookieRandomly() {
     // Hide the wild cookie after 2 seconds
     setTimeout(() => {
       wildCookie.style.display = "none";
-    }, 2000);
+      // Schedule next appearance with a random delay between 2 to 5 seconds
+      setTimeout(showAndHide, Math.random() * (5000 - 2000) + 2000);
+    }, 2000); // Hide after 2 seconds
   }
-
-  // Show the wild cookie at regular intervals
-  setInterval(showAndHide, 5000);
+  // Start the sequence without setInterval
+  showAndHide();
 }
 // Call the function when ready
 showWildCookieRandomly();
+
+//show half eaten cookie
+function showHalfCookieRandomly() {
+  function showAndHide() {
+    const margin = 50;
+    // Use the viewport dimensions, considering the wild cookie's size to avoid overflow
+    const vw =
+      Math.max(
+        document.documentElement.clientWidth || 0,
+        window.innerWidth || 0
+      ) -
+      halfCookie.offsetWidth -
+      margin * 2; // Subtracting margin from both sides
+    const vh =
+      Math.max(
+        document.documentElement.clientHeight || 0,
+        window.innerHeight || 0
+      ) -
+      halfCookie.offsetHeight -
+      margin * 2; // Subtracting margin from both sides
+
+    // Generate random positions within the viewport with the margin
+    const randomX = Math.floor(Math.random() * vw) + margin;
+    const randomY = Math.floor(Math.random() * vh) + margin;
+
+    // Position the wild cookie using CSS 'top' and 'left' properties based on viewport dimensions
+    halfCookie.style.left = `${randomX}px`;
+    halfCookie.style.top = `${randomY}px`;
+
+    // Make the wild cookie visible
+    halfCookie.style.display = "block";
+
+    setTimeout(() => {
+      halfCookie.style.display = "none";
+      // Schedule next appearance with a random delay between 2 to 5 seconds
+      setTimeout(showAndHide, Math.random() * (5000 - 2000) + 2000);
+    }, 2000); // Hide after 2 seconds
+  }
+  // Start the sequence without setInterval
+  showAndHide();
+}
+// Call the function when ready
+showHalfCookieRandomly();
 // Scores and settings
 let score = 0;
 let progressClicks = 0;
@@ -66,10 +116,73 @@ const priceOfFactory = 5000;
 const priceOfMine = 10000;
 const priceOfFarm = 25000;
 let cookiesPerSecond = 0;
+const gameDuration = 60; // 60 seconds for the game
+const timerDisplay = document.querySelector(".timer");
+let timeLeft = gameDuration;
+let gameState = "inProgress";
+
+function startTimer() {
+  const timer = setInterval(() => {
+    timeLeft -= 1;
+    updateTimerDisplay();
+
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      gameOver();
+    }
+  }, 1000);
+}
+
+document.body.addEventListener("click", function playMusic() {
+  const music = document.getElementById("backgroundMusic");
+  music.play();
+
+  // Remove the event listener after the music starts playing
+  document.body.removeEventListener("click", playMusic);
+});
+
+// Update the timer display
+function updateTimerDisplay() {
+  timerDisplay.textContent = `Time: ${timeLeft} sec`;
+}
+
+// Handle game over
+function gameOver() {
+  if (gameState === "inProgress") {
+    gameState = "lost";
+    alert(`Game Over! You scored ${score} cookies.`);
+    setTimeout(() => window.location.reload(), 100);
+  }
+}
+
+function checkWinCondition() {
+  if (score >= 10000 && gameState === "inProgress") {
+    // Update the game state to prevent multiple alerts
+    gameState = "won";
+    alert(`You won! You scored ${score} cookies.`);
+    // Introduce a slight delay before refreshing the page
+    setTimeout(() => window.location.reload(), 100);
+  }
+}
+
+function startGame() {
+  score = 0;
+  gameState = "inProgress";
+  // Reset other game elements as needed
+  startTimer();
+  updateDisplay();
+}
+
+// Call startGame() when you want to start or restart the game
+startGame();
+
+// Start the game timer
+updateTimerDisplay();
 
 // Update display function
 function updateDisplay() {
   pointsDisplay.textContent = `Cookies: ${score}`;
+  checkWinCondition();
 }
 // Function to update progress bar
 function updateProgressBar() {
@@ -78,8 +191,9 @@ function updateProgressBar() {
 
   if (progressPercentage >= 100) {
     // Award extra points and reset
-    let bonusPoints = score;
-    score *= 2;
+    let bonusPoints = score * 2; // Double the score to calculate bonus points
+    bonusPoints = Math.min(bonusPoints, 1000); // Limit bonus points to 1000 maximum
+    score += bonusPoints; // Add bonus points to the score
     progressClicks = 0;
     triggerConfetti();
     showReward(bonusPoints);
@@ -96,7 +210,23 @@ wildCookie.addEventListener("click", () => {
 
   // Logic to award points goes here
   score += 100; // Assuming 'score' is your score variable
+  timeLeft += 4;
   showReward(100);
+  updateDisplay(); // Update the display with the new score
+
+  // Optionally, show some feedback to the player
+});
+halfCookie.addEventListener("click", () => {
+  // Hide the cookie immediately on click
+  halfCookie.style.display = "none";
+
+  // Trigger confetti at the click position
+  triggerConfetti();
+
+  // Logic to award points goes here
+  score -= 100; // Assuming 'score' is your score variable
+  timeLeft -= 3;
+  showReward("-100 points -3 seconds");
   updateDisplay(); // Update the display with the new score
 
   // Optionally, show some feedback to the player

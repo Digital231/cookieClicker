@@ -101,7 +101,21 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 50%;
-  
+  cursor: pointer;
+  display: none; /* Initially hidden */
+  animation: glow 1.5s infinite alternate; /* Apply the glow animation */
+}
+
+.halfCookie {
+position: fixed; /* Fixed relative to the viewport */
+  width: 50px; /* Example size */
+  height: 50px;
+  background-color: transparent;
+  background-image: url("./assets/halfCookie.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
   cursor: pointer;
   display: none; /* Initially hidden */
   animation: glow 1.5s infinite alternate; /* Apply the glow animation */
@@ -115,4 +129,15 @@ body {
   to {
     box-shadow: 0 0 20px #ff9900, 0 0 30px #ff9900, 0 0 40px #ff9900; /* Final glow effect */
   }
+}
+
+.conditions {
+    color: white;
+}
+
+.timer {
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
 }
